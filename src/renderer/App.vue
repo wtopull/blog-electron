@@ -3,13 +3,10 @@
     <router-view></router-view>
   </div>
 </template>
-
 <script>
-  export default {
-    name: 'blog-electron'
-  }
+export default {
+  name: "blog-electron",
+};
 </script>
-
-<style>
-  /* CSS */
+<style lang='scss' scoped>
 </style>
