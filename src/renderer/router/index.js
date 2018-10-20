@@ -9,6 +9,11 @@ export default new Router({
       component: require('@/components/home').default
     },
     {
+      path: '/bg',
+      name: 'bg',
+      component: require('@/components/bg').default
+    },
+    {
       path: '*',
       redirect: '/'
     }

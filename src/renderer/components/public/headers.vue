@@ -1,13 +1,13 @@
 <template>
   <div class="headNav theme">
-    <div class="topLeft">Nathan</div>
+    <div class="topLeft" @click="backhome">Nathan</div>
     <div class="topCenter">待续......</div>
     <div class="topRight">
       <div class="buddha">
         <img src="@/assets/img/3.jpg" alt="">
       </div>
       <div class="nicname"><span>胖子叔叔</span><i class="iconfont icon-triangledownfill"></i></div>
-      <div class="skin"><i class="iconfont icon-clothes"></i></div>
+      <div class="skin"><i class="iconfont icon-settings" @click="toBg"></i></div>
       <div class="BrowserClick"><i class="iconfont icon-move" @click="minimize"></i><i class="iconfont icon-close_light" @click="windowOpen"></i></div>
     </div>
   </div>
@@ -18,8 +18,15 @@ export default {
     return {};
   },
   methods: {
+    toBg(){
+      this.$router.push('/bg');
+    },
+    backhome(){
+      this.$router.push('/home');
+    },
     //确认关闭窗口
     windowOpen() {
+      localStorage.clear();
       this.$electron.ipcRenderer.send("close");
     },
     //最小化
@@ -45,12 +52,16 @@ export default {
   width: 300px;
   height: 100%;
   margin-left: 8px;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
 }
 .topCenter{
   display: flex;
   align-items: center;
   width: calc(100% - 580px);
   height: 100%;
+  cursor: pointer;
+  -webkit-app-region: drag;
 }
 .topRight{
   display: flex;
@@ -82,7 +93,7 @@ export default {
   }
   & .skin{
     color: rgb(225, 225, 226);
-    margin:0 22px;
+    margin:0 20px;
     cursor: pointer;
     & i{
       font-size: 24px;
