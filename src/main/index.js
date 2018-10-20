@@ -21,7 +21,7 @@ function createWindow() {
     width: 1440,
     minWidth: 1440,
     webPreferences: {
-      webSecurity: true,
+      webSecurity: false,
       plugins: true
     },
     frame: false,

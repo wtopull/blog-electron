@@ -17,14 +17,23 @@
 export default {
   data() {
     return {
-      showEditPop: false
+      showEditPop: false,
+      username:'huiyuan101',
+      password:'11211121'
     };
   },
   methods: {
     //编辑
     fileRead() {
-      let fso = new FileReader();
-      fso.readAsText("../../assets/js/abc.txt", "gb2312");
+      let requestParam = JSON.stringify({
+        username: this.username,
+        password: this.password,
+      });
+      this.$http.post("http://127.0.0.1:3000/logins",requestParam).then(res =>{
+        console.log(res);
+      })
+      // let fso = new FileReader();
+      // fso.readAsText("../../assets/js/abc.txt", "gb2312");
     },
     //取消
     showEditPopBlls() {
