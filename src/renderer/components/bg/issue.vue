@@ -1,14 +1,14 @@
 <template>
-  <div class="editpop" v-show="showEditPop">
+  <div class="issue" v-show="showIssue">
     <ul>
-      <li><span>类别：</span><input type="text" value="Vue" disabled></li>
+      <li><span>类别：</span><input type="text" value="Vue"></li>
       <li><span>标题：</span><input type="text" value="Vue"></li>
       <li><span>副标题：</span><input type="text" value="Vue"></li>
       <li><span>编辑时间：</span><input type="text" value="Vue"></li>
       <li class="content"><span>内容：</span><textarea name="" id="" cols="30" rows="10"></textarea></li>
     </ul>
-    <div class="editBall">
-      <button @click="showEditPopBlls">取消</button>
+    <div class="issueBall">
+      <button @click="showbox">取消</button>
       <button @click="fileRead">确定</button>
     </div>
   </div>
@@ -17,27 +17,22 @@
 export default {
   data() {
     return {
-      showEditPop: false
+      showIssue:false
     };
   },
-  methods: {
-    //编辑
-    fileRead() {
-      let fso = new FileReader();
-      fso.readAsText("../../assets/js/abc.txt", "gb2312");
+  methods:{
+    fileRead(){},
+    showboxs(){
+      this.showIssue = true;
     },
-    //取消
-    showEditPopBlls() {
-      this.showEditPop = false;
-    },
-    showEditPopBll() {
-      this.showEditPop = true;
+    showbox(){
+      this.showIssue = false;
     }
   }
 };
 </script>
-<style lang="scss">
-.editpop {
+<style lang="scss" scoped>
+.issue{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -74,7 +69,7 @@ export default {
     }
   }
 }
-.editBall {
+.issueBall {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,5 +90,3 @@ export default {
   }
 }
 </style>
-
-
