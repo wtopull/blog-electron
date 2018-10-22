@@ -18,29 +18,33 @@
 import bglogin from "./bg/bglogin.vue";
 import listBox from "./bg/list.vue";
 import issue from "./bg/issue.vue";
-import { doclist } from "@/assets/js/doclist.js";
 export default {
   data() {
     return {
       isBgLogin: true,
       title: null,
-      doclist: doclist,
+      doclist: null,
       listNum: 0
     };
   },
   mounted() {
+    this.doc();
     //管理员登陆判断
-    if (localStorage.getItem("bg") === "false") {
+    if (localStorage.getItem("bgloginStatus") === "false") {
       this.isBgLogin = false;
     }
   },
   methods: {
+    doc(){
+      this.$http.get("http://127.0.0.1:3000/list").then(res => {
+        this.doclist = res.data.data;        
+      })
+    },
     showIssue(){
       this.$refs.showboxs.showboxs();
     },
     listNavBall(item, index) {
       this.listNum = index;
-      console.log(item);
     }
   },
   components: {

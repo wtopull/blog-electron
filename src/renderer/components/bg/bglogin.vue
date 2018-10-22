@@ -15,18 +15,27 @@ export default {
   data() {
     return {
       islogin: true,
-      user: "",
-      pd: ""
+      user: "nathan102",
+      pd: "11211121"
     };
   },
   methods: {
     toBgLogin() {
-      if (this.user == "nathan" && this.pd == "11211121") {
-        this.islogin = false;
-        localStorage.setItem("bg",this.islogin);
-      }else{
-        alert("账号或密码不正确!")
-      }
+      let requestParam = JSON.stringify({
+        username: this.user,
+        password: this.pd
+      });
+      this.$http.post("http://127.0.0.1:3000/bglogin", requestParam).then(res => {
+        if (res.data.status == "1") {
+          this.islogin = false;
+          localStorage.setItem("bgloginStatus", res.data.data.loginStatus);
+        }else {
+          console.log(res.data.msg);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
     }
   }
 };
@@ -42,12 +51,14 @@ export default {
   background-color: #fff;
   & .bgBox {
     border: 1px solid #ddd;
+    border-radius: 4px;
     width: 300px;
     height: 400px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 0 3px 16px -5px #070707;
     & h3 {
       margin: 20px 0;
     }
@@ -57,7 +68,7 @@ export default {
         align-items: center;
         justify-content: center;
         margin: 12px 0;
-        & input{
+        & input {
           border: none;
           border-bottom: 1px solid #ddd;
           height: 24px;
@@ -69,7 +80,7 @@ export default {
           background: rgba(198, 47, 47, 0.9);
           border-radius: 16px;
           margin-top: 22px;
-          color: #FFF;
+          color: #fff;
         }
       }
     }

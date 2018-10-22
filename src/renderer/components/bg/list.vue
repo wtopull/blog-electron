@@ -15,19 +15,26 @@
   </div>
 </template>
 <script>
-import { doclist } from "@/assets/js/doclist.js";
 import editpop from './editpop.vue'
 export default {
   data() {
     return {
-      doclist: doclist,
+      doclist: null,
     };
   },
   props: {
     listNum: Number
   },
-  mounted() {},
+  mounted() {
+    this.getlist();
+  },
   methods: {
+    //获取
+    getlist(){
+      this.$http.get("http://127.0.0.1:3000/list").then(res => {
+        this.doclist = res.data.data;
+      })
+    },
     //删除
     delRead(item,ballist){
       // console.log(item,ballist);

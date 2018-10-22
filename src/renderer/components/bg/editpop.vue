@@ -29,11 +29,19 @@ export default {
         username: this.username,
         password: this.password,
       });
-      this.$http.post("http://127.0.0.1:3000/logins",requestParam).then(res =>{
-        console.log(res);
+      this.$http.post("http://127.0.0.1:3000/bglogin", requestParam).then(res => {
+        if (res.data.status == "1") {
+          localStorage.setItem("loginStatus", res.data.data.loginStatus);
+        }else {
+          console.log(res.data.msg);
+        }
       })
-      // let fso = new FileReader();
-      // fso.readAsText("../../assets/js/abc.txt", "gb2312");
+      .catch(error => {
+        console.log(error);
+      });
+      // this.$http.post("http://127.0.0.1:3000/login",requestParam).then(res =>{
+      //   localStorage.setItem("loginStatus",res.data.data.loginStatus);
+      // })
     },
     //取消
     showEditPopBlls() {
@@ -57,7 +65,8 @@ export default {
   border: 1px solid #ddd;
   background: #fff;
   padding: 20px;
-  border-radius: 3px;
+  border-radius: 4px;
+  box-shadow: 0 3px 16px -5px #070707;
   & ul {
     & li {
       display: flex;
