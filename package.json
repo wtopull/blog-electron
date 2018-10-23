@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "Nathan",
   "description": "An electron-vue project",
-  "license": null,
+  "license": "null",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -17,7 +17,7 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "blog-electron",
+    "productName": "Nathan",
     "appId": "com.example.yourapp",
     "directories": {
       "output": "build"
