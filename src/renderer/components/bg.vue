@@ -5,7 +5,7 @@
       <div class="bgTitle">
         <div class="issue"><button @click="showIssue">文章发布</button></div>
         <ul>
-          <li :class="listNum == index? 'active':''" v-for="(item,index) in doclist" :key="index" @click="listNavBall(item,index)">{{item.id}}</li>
+          <li :class="listNum == index? 'active':''" v-for="(item,index) in doclist" :key="index" @click="listNavBall(item,index)">{{item.type}}</li>
         </ul>
       </div>
       <hr>
@@ -37,7 +37,9 @@ export default {
   methods: {
     doc(){
       this.$http.get("http://127.0.0.1:3000/list").then(res => {
-        this.doclist = res.data.data;        
+        this.doclist = res.data.data;    
+        console.log(this.doclist);
+            
       })
     },
     showIssue(){

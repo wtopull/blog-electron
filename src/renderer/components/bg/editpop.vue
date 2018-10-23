@@ -39,9 +39,6 @@ export default {
       .catch(error => {
         console.log(error);
       });
-      // this.$http.post("http://127.0.0.1:3000/login",requestParam).then(res =>{
-      //   localStorage.setItem("loginStatus",res.data.data.loginStatus);
-      // })
     },
     //取消
     showEditPopBlls() {
