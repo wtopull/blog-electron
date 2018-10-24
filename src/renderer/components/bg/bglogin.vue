@@ -25,7 +25,7 @@ export default {
         username: this.user,
         password: this.pd
       });
-      this.$http.post("http://127.0.0.1:3000/bglogin", requestParam).then(res => {
+      this.$http.post("http://111.231.207.167:3000/bglogin", requestParam).then(res => {
         if (res.data.status == "1") {
           this.islogin = false;
           localStorage.setItem("bgloginStatus", res.data.data.loginStatus);
