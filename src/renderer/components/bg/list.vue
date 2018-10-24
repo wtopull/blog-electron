@@ -2,11 +2,11 @@
   <div class="list">
     <ul>
       <li v-for="(item,index) in doclist" :key="index" v-if="index == listNum">
-        <div class="lists" v-for="(ball,ballist) in item.childers">
-          <p>{{ball.title}}<small>------ {{ball.date}}</small></p>
+        <div class="lists">
+          <p>{{item.title}}<small>------ {{item.date}}</small></p>
           <div>
-            <button @click="delRead(item,ballist)">删除</button>
-            <button @click="eidtRead(ball)">编辑</button>
+            <button @click="delRead(item,index)">删除</button>
+            <button @click="eidtRead(item)">编辑</button>
           </div>
         </div>
       </li>
@@ -20,6 +20,8 @@ export default {
   data() {
     return {
       doclist: null,
+      id:null,
+      title:null
     };
   },
   props: {
@@ -36,9 +38,13 @@ export default {
       })
     },
     //删除
-    delRead(item,ballist){
-      // console.log(item,ballist);
-      console.log(doclist);
+    delRead(item,index){
+      let requestParam = JSON.stringify({
+        title:item.title
+      });
+      this.$http.post('http://127.0.0.1:3000/list',requestParam).then(res =>{
+        console.log(res);
+      })
     },
     //编辑
     eidtRead(ball){
