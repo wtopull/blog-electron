@@ -18,28 +18,39 @@
 import bglogin from "./bg/bglogin.vue";
 import listBox from "./bg/list.vue";
 import issue from "./bg/issue.vue";
+// import {list} from  '@/assets/js/list'
 export default {
   data() {
     return {
       isBgLogin: true,
       title: null,
       doclist: null,
-      listNum: 0
+      listNum: 0,
     };
   },
   mounted() {
     this.doc();
+    // this.list();
     //管理员登陆判断
     if (localStorage.getItem("bgloginStatus") === "false") {
       this.isBgLogin = false;
     }
   },
   methods: {
+    // list(){
+    //   let listarr = [];
+    //   list.forEach((item,k) => {
+    //     if(! listarr[item.type]){
+    //       listarr[item.type]=[];
+    //     }
+    //     listarr[item.type].push(item);
+    //   });
+    //   console.log("listarr:",listarr);
+    // },
     doc(){
-      this.$http.get("http://127.0.0.1:3000/list").then(res => {
+      this.$http.get("http://111.231.207.167:3000/list").then(res => {
         this.doclist = res.data.data;    
-        console.log(this.doclist);
-            
+        // console.log(this.doclist);
       })
     },
     showIssue(){

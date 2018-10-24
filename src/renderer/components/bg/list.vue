@@ -33,7 +33,7 @@ export default {
   methods: {
     //获取
     getlist(){
-      this.$http.get("http://127.0.0.1:3000/list").then(res => {
+      this.$http.get("http://111.231.207.167:3000/list").then(res => {
         this.doclist = res.data.data;
       })
     },
@@ -42,7 +42,7 @@ export default {
       let requestParam = JSON.stringify({
         title:item.title
       });
-      this.$http.post('http://127.0.0.1:3000/list',requestParam).then(res =>{
+      this.$http.post('http://111.231.207.167:3000/list',requestParam).then(res =>{
         console.log(res);
       })
     },
