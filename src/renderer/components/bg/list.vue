@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <ul>
-      <li v-for="(item,index) in doclist" :key="index" v-if="index == listNum">
+      <li v-for="(item,index) in listNum" :key="index">
         <div class="lists">
           <p>{{item.title}}<small>------ {{item.date}}</small></p>
           <div>
@@ -15,48 +15,32 @@
   </div>
 </template>
 <script>
-import editpop from './editpop.vue'
+import editpop from "./editpop.vue";
 export default {
   data() {
     return {
       doclist: null,
-      id:null,
-      title:null
     };
   },
-  props: {
-    listNum: Number
-  },
-  mounted() {
-    this.getlist();
+  props:{
+    listNum:Array
   },
   methods: {
-    //获取
-    getlist(){
-      this.$http.get("http://111.231.207.167:3000/list").then(res => {
-        this.doclist = res.data.data;
-      })
-    },
     //删除
-    delRead(item,index){
-      let requestParam = JSON.stringify({
-        title:item.title
-      });
-      this.$http.post('http://111.231.207.167:3000/list',requestParam).then(res =>{
+    delRead(item, index) {
+      let requestParam = JSON.stringify({title: item.title});
+      this.$http.post("http://127.0.0.1:3000/list", requestParam).then(res => {
         console.log(res);
-      })
+        this.$parent.doc();
+      });
     },
     //编辑
-    eidtRead(ball){
+    eidtRead(ball) {
       this.$refs.showpop.showEditPopBll();
       this.showEditPop = !this.showEditPop;
     },
-    toread(ball) {
-      localStorage.setItem("itemRead", JSON.stringify(ball));
-      console.log(ball);
-    }
   },
-  components:{
+  components: {
     editpop
   }
 };
@@ -70,7 +54,7 @@ export default {
     & li {
       display: flex;
       flex-direction: column;
-      padding:0 168px;
+      padding: 0 168px;
       & div.lists {
         display: flex;
         align-items: center;
@@ -78,11 +62,11 @@ export default {
         height: 46px;
         width: 100%;
         border-bottom: 1px dashed #ddd;
-        & p{
+        & p {
           font-weight: 700;
           font-size: 16px;
           cursor: pointer;
-          & small{
+          & small {
             font-size: 10;
             color: #999;
             margin-left: 20px;
@@ -91,7 +75,7 @@ export default {
         & button {
           height: 46px;
           line-height: 46px;
-          padding:0px 12px;
+          padding: 0px 12px;
           cursor: pointer;
         }
       }
