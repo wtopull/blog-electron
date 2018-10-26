@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     doc() {
-      this.$http.get("http://127.0.0.1:3000/list").then(res => {
+      this.$http.get("http://111.231.207.167:3000/list").then(res => {
         localStorage.setItem("readlist", JSON.stringify(res.data.data));
         this.doclist = JSON.parse(localStorage.getItem("readlist"));
         this.doclist.forEach(item => {

@@ -1,11 +1,12 @@
 <template>
   <div class="issue" v-show="showIssue">
     <ul>
-      <li><span>类别：</span><input type="text" value="Vue"></li>
-      <li><span>标题：</span><input type="text" value="Vue"></li>
-      <li><span>副标题：</span><input type="text" value="Vue"></li>
-      <li><span>编辑时间：</span><input type="text" value="Vue"></li>
-      <li class="content"><span>内容：</span><textarea name="" id="" cols="30" rows="10"></textarea></li>
+      <li><span>类别：</span><input type="text" v-model="type"></li>
+      <li><span>标题：</span><input type="text" v-model="title"></li>
+      <li><span>副标题：</span><input type="text" v-model="subtitle"></li>
+      <li><span>编辑时间：</span><input type="text" v-model="date"></li>
+      <li><span>图片地址：</span><input type="text" v-model="img"></li>
+      <li class="content"><span>内容：</span><textarea v-model="contents" cols="30" rows="10"></textarea></li>
     </ul>
     <div class="issueBall">
       <button @click="showbox">取消</button>
@@ -17,22 +18,40 @@
 export default {
   data() {
     return {
-      showIssue:false
+      showIssue: false,
+      type: "",
+      title: "",
+      date: "",
+      img: "",
+      subtitle: "",
+      contents: ""
     };
   },
-  methods:{
-    fileRead(){},
-    showboxs(){
+  methods: {
+    fileRead() {
+      let reqParam = JSON.stringify({
+        type:this.type,
+        title:this.title,
+        date:this.date,
+        img:this.img,
+        subtitle:this.subtitle,
+        contents:this.contents
+      });
+      this.$http.post("http://111.231.207.167:3000/list/insert", reqParam).then(res => {
+        console.log(res);
+      });
+    },
+    showboxs() {
       this.showIssue = true;
     },
-    showbox(){
+    showbox() {
       this.showIssue = false;
     }
   }
 };
 </script>
 <style lang="scss" scoped>
-.issue{
+.issue {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -59,7 +78,7 @@ export default {
         border-bottom: 1px solid #ddd;
       }
     }
-    & li.content{
+    & li.content {
       margin-top: 4px;
       & textarea {
         width: 578px;

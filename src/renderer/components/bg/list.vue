@@ -28,8 +28,8 @@ export default {
   methods: {
     //删除
     delRead(item, index) {
-      let requestParam = JSON.stringify({title: item.title});
-      this.$http.post("http://127.0.0.1:3000/list", requestParam).then(res => {
+      let reqParam = JSON.stringify({title: item.title});
+      this.$http.post("http://111.231.207.167:3000/list/dele", reqParam).then(res => {
         console.log(res);
         this.$parent.doc();
       });
